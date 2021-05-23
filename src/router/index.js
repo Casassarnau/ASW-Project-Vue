@@ -11,11 +11,18 @@ const router = createRouter({
         },
         {
             path: '/newest',
-            component: Guide
+            component: Home,
+            props: { path: '?types=au&order=-creation_time'}
         },
         {
             path: '/new',
-            component: Home
+            component: Home,
+            props: { path: '?types=u&order=-points'}
+        },
+        {
+            path: '/profile',
+            component: Home,
+            props: route => ({ query: route.query.username })
         }
     ]
 })

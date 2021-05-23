@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div>
+    <div style="margin-bottom: 20px">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-md">
           <router-link class="navbar-brand" to="/">HackerNews</router-link>
@@ -37,8 +37,22 @@
   export default {
     name: 'App',
     created () {
-            document.title = "HackerNews";
+      document.title = "HackerNews";
+    },
+    data () {
+      return {
+        token: '',
+        username: '',
+      }
+    },
+    methods: {
+        setToken(token) {
+            this.token = token;
+        },
+        getToken() {
+            return this.token;
         }
+    }
   }
 </script>
 
@@ -53,5 +67,9 @@
 body {
   color: whitesmoke !important;
   background-color: #2c3e50 !important;
+}
+a {
+  color: inherit !important; /* blue colors for links too */
+  text-decoration: none !important; /* no underline */
 }
 </style>
