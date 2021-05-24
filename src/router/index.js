@@ -12,22 +12,36 @@ const router = createRouter({
         {
             path: '/newest',
             component: Home,
-            props: { path: '?types=au&order=-creation_time'}
+            props: { path: '?types=au&order=-creation_time' }
         },
         {
             path: '/new',
             component: Home,
-            props: { path: '?types=u&order=-points'}
+            props: { path: '?types=u&order=-points' }
+        },
+        {
+            path: '/ask',
+            component: Home,
+            props: { path: '?types=a&order=-creation_time'}
+        },
+        {
+            path: '/threads',
+            component: Home,
+            props: { path: '?types=cr&order=-creation_time' }
         },
         {
             path: '/profile',
             component: Home,
+<<<<<<< HEAD
             props: route => ({ query: route.query.username })
         },
         {
             path: '/ask',
             component: Home,
             props: route => { path: '?types=a&order=-creation' }
+=======
+            props: route => ({ query: route.query.user_id })
+>>>>>>> 705692fcad0b03102d272c4e78cfca1de86792c6
         }
 
     ]
