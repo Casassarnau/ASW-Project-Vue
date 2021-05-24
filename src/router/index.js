@@ -34,12 +34,14 @@ const router = createRouter({
         {
             path: '/profile',
             component: Home,
+
             props: route => ({ query: route.query.username })
         },
         {
             path: '/contribution',
             component: Contribution,
             props: route => ({ query: route.query.contributionId })
+
         }
 
     ]

@@ -75,4 +75,7 @@ body {
   color: inherit !important; /* blue colors for links too */
   text-decoration: none !important; /* no underline */
 }
+.link-2 {
+  color: rgb(179, 179, 179) !important;
+}
 </style>
