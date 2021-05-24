@@ -32,7 +32,7 @@ const router = createRouter({
         {
             path: '/profile',
             component: Home,
-            props: route => ({ query: route.query.user_id })
+            props: route => ({ user_id: route.query.user_id })
         }
     ]
 })
