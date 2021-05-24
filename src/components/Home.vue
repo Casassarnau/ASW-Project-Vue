@@ -5,11 +5,11 @@
                 <div v-if="item.voted" class="col-1" @click="voteclick(item)" style="background-image: url('arrow-down.svg'); background-repeat: no-repeat; background-size: 40px; background-position: center center;"></div>
                 <div v-if="!item.voted" class="col-1" @click="voteclick(item)" style="background-image: url('arrow-up.svg'); background-repeat: no-repeat; background-size: 40px; background-position: center center;"></div>
                 <div class="col-11 card-body" style="text-align: left">
-                    <router-link v-if="item.type == 'a'" :to="{path: '/contibution', query: { id: item.id }}"><h5 class="card-title">{{item.title}}</h5></router-link>
-                    <a v-if="item.type == 'u'" :href=item.url><h5 class="card-title">{{item.title}}</h5></a>
-                    <p class="card-text">{{ item.points }} points by <router-link :to="{path: '/profile', query: { username: item.username }}">{{item.username}}</router-link>
+                    <router-link class="link" v-if="item.type == 'a'" :to="{path: '/contibution', query: { id: item.id }}"><h5 class="card-title">{{item.title}}</h5></router-link>
+                    <a class="link" v-if="item.type == 'u'" :href=item.url><h5 class="card-title">{{item.title}}</h5></a>
+                    <p class="card-text">{{ item.points }} points by <router-link class="link" :to="{path: '/profile', query: { username: item.username }}">{{item.username}}</router-link>
                     {{item.time}}<span style="float:right;">
-                        <router-link :to="{path: '/contibution', query: { id: item.id }}">{{ item.number_comments != 0 ? item.number_comments + ' comments' : 'discuss' }}</router-link>
+                        <router-link class="link" :to="{path: '/contibution', query: { id: item.id }}">{{ item.number_comments != 0 ? item.number_comments + ' comments' : 'discuss' }}</router-link>
                         </span></p>
                 </div>
             </div>
@@ -29,12 +29,18 @@ export default {
         path: {
         type: String,
         default: ''
+        },
+        u_id: {
+        type: Number,
+        default: 0
+        },
+        user_id: {
+        type: Number,
+        default: 0
         }
     },
     watch:{
-        $route (to, from){
-            this.reload()
-        }
+        'path': 'reload'
     },
     created() {
         this.reload();
@@ -73,7 +79,9 @@ export default {
             }
         },
         reload() {
-            axios.get("http://localhost:8000/api/contributions/" + this.$props.path, {
+            let url = this.$props.path;
+            if (this.$props.user_id) url += '&user_id=' + user_id;
+            axios.get("http://localhost:8000/api/contributions/" + url, {
                 headers: {
                     'Authorization': 'Token 1641c6bb85cd01f0ff961658daf3385212e0c9fc'
                 }

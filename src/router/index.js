@@ -12,17 +12,27 @@ const router = createRouter({
         {
             path: '/newest',
             component: Home,
-            props: { path: '?types=au&order=-creation_time'}
+            props: { path: '?types=au&order=-creation_time' }
         },
         {
             path: '/new',
             component: Home,
-            props: { path: '?types=u&order=-points'}
+            props: { path: '?types=u&order=-points' }
+        },
+        {
+            path: '/ask',
+            component: Home,
+            props: { path: '?types=a&order=-creation_time'}
+        },
+        {
+            path: '/threads',
+            component: Home,
+            props: { path: '?types=cr&order=-creation_time' }
         },
         {
             path: '/profile',
             component: Home,
-            props: route => ({ query: route.query.username })
+            props: route => ({ query: route.query.user_id })
         }
     ]
 })
