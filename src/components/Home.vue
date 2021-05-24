@@ -32,19 +32,17 @@ export default {
         }
     },
     watch:{
-        $route (to, from){
-            this.reload()
-        }
+        'path' : 'reload'
     },
     created() {
         this.reload();
     }, methods: {
         voteclick(item) {
-            const user_id = 3, cont_id = item.id, voted = item.voted;
+            const user_id = 1, cont_id = item.id, voted = item.voted;
             if (voted) {
                 axios.delete("http://localhost:8000/api/votes/?contribution_id=" + cont_id + "&user_id=" + user_id, {
                     headers: {
-                        'Authorization': 'Token 1641c6bb85cd01f0ff961658daf3385212e0c9fc'
+                        'Authorization': 'Token 2b02e0175ffa24fa3a1131020176c4209842ab89'
                     }
                 }).then((result) => {
                     if (result.status == 204) {
@@ -60,7 +58,7 @@ export default {
                     contribution_id: cont_id
                 }, {
                     headers: {
-                        'Authorization': 'Token 1641c6bb85cd01f0ff961658daf3385212e0c9fc'
+                        'Authorization': 'Token 2b02e0175ffa24fa3a1131020176c4209842ab89'
                     }
                 }).then((result) => {
                     if (result.status == 201) {
@@ -75,7 +73,7 @@ export default {
         reload() {
             axios.get("http://localhost:8000/api/contributions/" + this.$props.path, {
                 headers: {
-                    'Authorization': 'Token 1641c6bb85cd01f0ff961658daf3385212e0c9fc'
+                    'Authorization': 'Token 2b02e0175ffa24fa3a1131020176c4209842ab89'
                 }
             }).then((result) => {
                 if (result.status == 200) {

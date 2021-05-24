@@ -23,7 +23,13 @@ const router = createRouter({
             path: '/profile',
             component: Home,
             props: route => ({ query: route.query.username })
+        },
+        {
+            path: '/ask',
+            component: Home,
+            props: route => { path: '?types=a&order=-creation' }
         }
+
     ]
 })
 
