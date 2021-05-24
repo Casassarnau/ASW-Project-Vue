@@ -40,11 +40,7 @@ export default {
         }
     },
     watch:{
-<<<<<<< HEAD
         'path' : 'reload'
-=======
-        'path': 'reload'
->>>>>>> 705692fcad0b03102d272c4e78cfca1de86792c6
     },
     created() {
         this.reload();
