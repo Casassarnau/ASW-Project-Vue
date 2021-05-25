@@ -5,15 +5,15 @@
                 <div v-if="item.voted" class="col-1" @click="voteclick(item)" style="background-image: url('arrow-down.svg'); background-repeat: no-repeat; background-size: 40px; background-position: center center;"></div>
                 <div v-if="!item.voted" class="col-1" @click="voteclick(item)" style="background-image: url('arrow-up.svg'); background-repeat: no-repeat; background-size: 40px; background-position: center center;"></div>
                 <div class="col-11 card-body" style="text-align: left; font-size: 0.8em;">
-                    <router-link class="link" v-if="item.type == 'a'" :to="{path: '/contibution', query: { id: item.id }}"><h5 class="card-title">{{item.title}}</h5></router-link>
+                    <router-link class="link" v-if="item.type == 'a'" :to="{path: '/contribution', query: { id: item.id }}"><h5 class="card-title">{{item.title}}</h5></router-link>
                     <h5 class="card-title" v-if="item.type == 'u'"><a class="link" :href=item.url>{{item.title}}</a><a class="link link-2" style="font-size: 0.9em" :href="'https://' + item.domain"> ({{item.domain}})</a></h5>
                     <p class="card-text" style="color: rgb(179, 179, 179);">{{ item.points }} points by <router-link class="link" :to="{path: '/profile', query: { username: item.username }}">{{item.username}}</router-link>
                         {{item.time}}
                         <router-link v-if="item.type == 'r' || item.type == 'c'" class="link" :to="{path: '/contribution', query: {id: item.parent}}">| parent</router-link>
                         <router-link v-if="item.type == 'r' || item.type == 'c'" class="link" :to="{path: '/contribution', query: {id: item.super_parent}}"> | On: {{item.super_parent_title}}</router-link>
                         <span style="float:right;">
-                            <router-link v-if="item.type == 'a' || item.type == 'u'" class="link" :to="{path: '/contibution', query: { id: item.id }}">{{ item.number_comments != 0 ? item.number_comments + ' comments' : 'discuss' }}</router-link>
-                            <router-link v-if="item.type == 'c' || item.type == 'r'" class="link" :to="{path: '/contibution', query: { id: item.id }}">reply</router-link>
+                            <router-link v-if="item.type == 'a' || item.type == 'u'" class="link" :to="{path: '/contribution', query: { id: item.id }}">{{ item.number_comments != 0 ? item.number_comments + ' comments' : 'discuss' }}</router-link>
+                            <router-link v-if="item.type == 'c' || item.type == 'r'" class="link" :to="{path: '/contribution', query: { id: item.id }}">reply</router-link>
                         </span>
                     </p>
                     <h6 v-if="item.type == 'r' || item.type == 'c'" class="card-text">

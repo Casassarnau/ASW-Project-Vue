@@ -10,7 +10,7 @@
                 <router-link class="nav-link" v-bind:class="{ active: $route.path == '/newest' }" to="/newest">New</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" v-bind:class="{ active: $route.path == '/threads' }" :to="{path: '/threads', query: { id: 3 }}" >Threads</router-link>
+                <router-link class="nav-link" v-bind:class="{ active: $route.path == '/threads' }" :to="{path: '/threads', query: { id: 1 }}" >Threads</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" v-bind:class="{ active: $route.path == '/ask' }" to="/ask">Ask</router-link>

@@ -24,7 +24,7 @@ const router = createRouter({
         {
             path: '/ask',
             component: Home,
-            props: route => { path: '?types=a&order=-creation' }
+            props: { path: '?types=a&order=-creation_time' }
         },
         {
             path: '/threads',
@@ -39,9 +39,7 @@ const router = createRouter({
         },
         {
             path: '/contribution',
-            component: Contribution,
-            props: route => ({ query: route.query.contributionId })
-
+            component: Contribution
         }
 
     ]
