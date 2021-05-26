@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import Submit from '../components/Submit.vue'
 import Guide from '../components/Guide.vue'
+import Contribution from '../components/Contribution.vue'
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -13,17 +15,17 @@ const router = createRouter({
         {
             path: '/newest',
             component: Home,
-            props: { path: '?types=au&order=-creation_time' }
+            props: { path: '?types=au&order=-creation_time'}
         },
         {
             path: '/new',
             component: Home,
-            props: { path: '?types=u&order=-points' }
+            props: { path: '?types=u&order=-points'}
         },
         {
             path: '/ask',
             component: Home,
-            props: { path: '?types=a&order=-creation_time'}
+            props: { path: '?types=a&order=-creation_time' }
         },
         {
             path: '/threads',
@@ -37,8 +39,14 @@ const router = createRouter({
         {
             path: '/profile',
             component: Home,
-            props: route => ({ query: route.query.user_id })
+
+            props: route => ({ query: route.query.username })
+        },
+        {
+            path: '/contribution',
+            component: Contribution
         }
+
     ]
 })
 
