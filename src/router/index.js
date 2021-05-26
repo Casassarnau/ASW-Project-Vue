@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import Submit from '../components/Submit.vue'
 import Guide from '../components/Guide.vue'
+import Profile from '../components/Profile.vue'
 import Contribution from '../components/Contribution.vue'
 
 
@@ -38,9 +39,7 @@ const router = createRouter({
         },
         {
             path: '/profile',
-            component: Home,
-
-            props: route => ({ query: route.query.username })
+            component: Profile            
         },
         {
             path: '/contribution',

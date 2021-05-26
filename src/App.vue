@@ -25,7 +25,7 @@
                 <router-link class="nav-link" to="/submit">Logout</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" v-bind:class="{ active: $route.path == '/profile' }" to="/profile">Profile</router-link>
+                <router-link class="nav-link" v-bind:class="{ active: $route.path == '/profile' }" :to="{path: '/profile', query: { userid: 4 }}">Profile</router-link>
               </li>
             </ul>
           </div>
