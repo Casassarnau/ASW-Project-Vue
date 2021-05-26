@@ -34,8 +34,7 @@ const router = createRouter({
         },
         {
             path: '/profile',
-            component: Profile,
-            props: route => ({ query: route.query.username })
+            component: Profile            
         },
         {
             path: '/contribution',
