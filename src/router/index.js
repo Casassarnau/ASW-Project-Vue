@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import Guide from '../components/Guide.vue'
+import Profile from '../components/Profile.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -21,7 +22,7 @@ const router = createRouter({
         },
         {
             path: '/profile',
-            component: Home,
+            component: Profile,
             props: route => ({ query: route.query.username })
         }
     ]
