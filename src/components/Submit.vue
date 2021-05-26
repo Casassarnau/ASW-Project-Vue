@@ -115,7 +115,7 @@ export default {
                     console.log(error.response)
                     if (error.response.status === 409) {
                         const id = error.response.data.detail.split(": ")[1];
-                        this.$router.push({ path: '/contribution', params: {id: id}});
+                        this.$router.push({ path: '/contribution?id='+id });
 
                     }
                     else {
@@ -143,7 +143,7 @@ export default {
                     console.log(error.response)
                     if (error.response.status === 409) {
                         const id = error.response.data.detail.split(": ")[1];
-                        this.$router.push({ path: '/contribution', params: {id: id}});
+                        this.$router.push({ path: '/contribution?id='+id});
 
                     }
                     else {

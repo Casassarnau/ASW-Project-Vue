@@ -44,7 +44,8 @@ const router = createRouter({
         },
         {
             path: '/contribution',
-            component: Contribution
+            component: Contribution,
+            name: "contribution"
         }
 
     ]
