@@ -7,7 +7,7 @@
                 <div class="col-11 card-body" style="text-align: left; font-size: 0.8em;">
                     <router-link class="link" v-if="result.type == 'a'" :to="{path: '/contribution', query: { id: result.id }}"><h5 class="card-title">{{result.title}}</h5></router-link>
                     <h5 class="card-title" v-if="result.type == 'u'"><a class="link" :href=result.url>{{result.title}}</a><a class="link link-2" style="font-size: 0.9em" :href="'https://' + result.domain"> ({{result.domain}})</a></h5>
-                    <p class="card-text" style="color: rgb(179, 179, 179);">{{ result.points }} points by <router-link class="link" :to="{path: '/profile', query: { username: result.username }}">{{result.username}}</router-link>
+                    <p class="card-text" style="color: rgb(179, 179, 179);">{{ result.points }} points by <router-link class="link" :to="{path: '/profile', query: { userid: result.user_id }}">{{result.username}}</router-link>
                         {{result.time}}
                         <router-link v-if="result.type == 'r' || result.type == 'c'" class="link" :to="{path: '/contribution', query: {id: result.parent}}">| parent</router-link>
                         <router-link v-if="result.type == 'r' || result.type == 'c'" class="link" :to="{path: '/contribution', query: {id: result.super_parent}}"> | On: {{result.super_parent_title}}</router-link>
@@ -48,7 +48,7 @@
                 <div class="col-11 card-body" style="text-align: left; font-size: 0.8em;">
                     <router-link class="link" v-if="item.type == 'a'" :to="{path: '/contribution', query: { id: item.id }}"><h5 class="card-title">{{item.title}}</h5></router-link>
                     <h5 class="card-title" v-if="item.type == 'u'"><a class="link" :href=item.url>{{item.title}}</a><a class="link link-2" style="font-size: 0.9em" :href="'https://' + item.domain"> ({{item.domain}})</a></h5>
-                    <p class="card-text" style="color: rgb(179, 179, 179);">{{ item.points }} points by <router-link class="link" :to="{path: '/profile', query: { username: item.username }}">{{item.username}}</router-link>
+                    <p class="card-text" style="color: rgb(179, 179, 179);">{{ item.points }} points by <router-link class="link" :to="{path: '/profile', query: { userid: item.user_id }}">{{item.username}}</router-link>
                         {{item.time}}
                         <router-link v-if="item.type == 'r' || item.type == 'c'" class="link" :to="{path: '/contribution', query: {id: item.parent}}">| parent</router-link>
                         <router-link v-if="item.type == 'r' || item.type == 'c'" class="link" :to="{path: '/contribution', query: {id: item.super_parent}}"> | On: {{item.super_parent_title}}</router-link>
@@ -95,9 +95,9 @@
             reload() {
                 
                 let id = this.$route.query.id;
-                axios.get("http://localhost:8000/api/contributions/" + id, {
+                axios.get("https://asw-edu-jd-eric-arnau.herokuapp.com/api/contributions/" + id, {
                     headers: {
-                        'Authorization': 'Token 2b02e0175ffa24fa3a1131020176c4209842ab89'
+                        'Authorization': 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
                     }
                 }).then((result) => {
                     if (result.status == 200) {
@@ -112,12 +112,12 @@
             },
             submit() {
                 console.log(this.comment_form);
-                axios.post("http://localhost:8000/api/contributions/" ,{
+                axios.post("https://asw-edu-jd-eric-arnau.herokuapp.com/api/contributions/" ,{
                         description : this.comment_form,
                         contribution_id : this.result.id 
                     }, {
                     headers: {
-                        'Authorization' : 'Token 2b02e0175ffa24fa3a1131020176c4209842ab89'
+                        'Authorization' : 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
                     }
                 }).then((result) => {
                     if (result.status == 201) {
@@ -130,11 +130,11 @@
                 })
             },
             voteclick(item) {
-                const user_id = 1, cont_id = item.id, voted = item.voted;
+                const user_id = 12, cont_id = item.id, voted = item.voted;
                 if (voted) {
-                    axios.delete("http://localhost:8000/api/votes/?contribution_id=" + cont_id + "&user_id=" + user_id, {
+                    axios.delete("https://asw-edu-jd-eric-arnau.herokuapp.com/api/votes/?contribution_id=" + cont_id + "&user_id=" + user_id, {
                         headers: {
-                            'Authorization': 'Token 2b02e0175ffa24fa3a1131020176c4209842ab89'
+                            'Authorization': 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
                         }
                     }).then((result) => {
                         if (result.status == 204) {
@@ -145,12 +145,12 @@
                         }
                     })
                 } else {
-                    axios.post("http://localhost:8000/api/votes/", {
+                    axios.post("https://asw-edu-jd-eric-arnau.herokuapp.com/api/votes/", {
                         user_id: user_id,
                         contribution_id: cont_id
                     }, {
                         headers: {
-                            'Authorization': 'Token 2b02e0175ffa24fa3a1131020176c4209842ab89'
+                            'Authorization': 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
                         }
                     }).then((result) => {
                         if (result.status == 201) {

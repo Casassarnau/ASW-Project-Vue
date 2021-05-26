@@ -85,7 +85,7 @@ export default {
                         description: this.text 
                     }, {
                     headers: {
-                        'Authorization' : 'Token f18ec8d59279592f810ebe5842256bf332f4acc7'
+                        'Authorization' : 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
                     }
                 }).then((result) => {
                     if (result.status == 201) {
@@ -104,7 +104,7 @@ export default {
                         url : this.url 
                     }, {
                     headers: {
-                        'Authorization' : 'Token f18ec8d59279592f810ebe5842256bf332f4acc7'
+                        'Authorization' : 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
                     }
                 }).then((result) => {
                     if (result.status == 201) {
@@ -115,7 +115,7 @@ export default {
                     console.log(error.response)
                     if (error.response.status === 409) {
                         const id = error.response.data.detail.split(": ")[1];
-                        this.$router.push({ path: '/contribution?id='+id });
+                        this.$router.push({ path: '/contribution', query: {id: id} });
 
                     }
                     else {
@@ -132,7 +132,7 @@ export default {
                         description: this.description
                     }, {
                     headers: {
-                        'Authorization' : 'Token f18ec8d59279592f810ebe5842256bf332f4acc7'
+                        'Authorization' : 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
                     }
                 }).then((result) => {
                     if (result.status == 201) {
@@ -143,7 +143,7 @@ export default {
                     console.log(error.response)
                     if (error.response.status === 409) {
                         const id = error.response.data.detail.split(": ")[1];
-                        this.$router.push({ path: '/contribution?id='+id});
+                        this.$router.push({ path: '/contribution', query: {id: id} });
 
                     }
                     else {
