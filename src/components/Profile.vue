@@ -83,18 +83,16 @@
                 </div>
             </div>
         </div>
-        <router-link v-bind:class="{ active: $route.path == '/submit' }" to="/submit">submissions</router-link>
+        <router-link :to="{path: '/submissions', query: { id: result.id }}">submissions</router-link>
         <div class="row mb-1"> </div>
-        <router-link v-bind:class="{ active: $route.path == '/threads' }" :to="{path: '/threads', query: { id: result.id }}">comments</router-link>
+        <router-link :to="{path: '/threads', query: { id: result.id }}">comments</router-link>
         <div class="row mb-1"> </div>
         <div v-if="isAuthenticated">
-            <router-link v-bind:class="{ active: $route.path == '/submit' }" to="/submit">upvoted submissions</router-link> / <router-link v-bind:class="{ active: $route.path == '/submit' }" to="/submit">comments</router-link> (private)
+            <router-link :to="{path: '/submissions', query: { upvoted: true }}">upvoted submissions</router-link> / <router-link :to="{path: '/threads', query: { upvoted: true }}">comments</router-link> (private)
         </div>
         <div class="row mb-3"> </div>
         <button v-if="isAuthenticated" @click="submit()" class="btn btn-primary">update</button>
     </div>
-
-    <div v-if="error"> {{this.errormsg}} </div>
 
 </template>
 
@@ -119,22 +117,20 @@
             }
         },
         watch: {
-            $route(to, from) {
-                this.reload()
-            }
+            '$route.query.userid' : 'reload'
         },
         created() {
             this.reload();
         }, methods: {
             reload() {
 
-                axios.get("http://127.0.0.1:8000/api/users/" + this.$route.query.userid, {
+                axios.get("https://asw-edu-jd-eric-arnau.herokuapp.com/api/users/" + this.$route.query.userid, {
                     headers: {
-                        'Authorization': 'Token 104e4820a2c082a040dba19a4a10ea9483d11844'
+                        'Authorization': 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
                     }
                 }).then((result) => {
                     if (result.status === 200) {
-                        if (this.$route.query.userid != 4) {
+                        if (this.$route.query.userid != 12) {
                             this.result = result.data;
                             this.isAuthenticated = false;
                         } else {
@@ -175,7 +171,7 @@
 
                     console.log(this.userid)
 
-                    axios.put("http://127.0.0.1:8000/api/users/" + this.$route.query.userid + "/", {
+                    axios.put("https://asw-edu-jd-eric-arnau.herokuapp.com/api/users/" + this.$route.query.userid + "/", {
                         "email": this.email,
                         "description": this.about,
                         "showdead": showdead,
@@ -185,7 +181,7 @@
                         "delay": this.delay,
                     }, {
                         headers: {
-                            'Authorization': 'Token 104e4820a2c082a040dba19a4a10ea9483d11844'
+                            'Authorization': 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
                         }
                     }).then((result) => {
                         if (result.status === 200) {

@@ -75,14 +75,14 @@ export default {
         const isAsk = !!this.text && !this.url
         const isUrl = !!this.url && !this.text
         const isComment = !!this.text && !!this.url
-    
-        
-        if(isAsk){
-           
+        console.log(isComment);
+        if(isComment){
+                                   
             axios.post("https://asw-edu-jd-eric-arnau.herokuapp.com/api/contributions/" ,{
                     
                         title: this.title,
-                        description: this.text 
+                        url: this.url,
+                        description: this.text
                     }, {
                     headers: {
                         'Authorization' : 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
@@ -90,9 +90,17 @@ export default {
                 }).then((result) => {
                     if (result.status == 201) {
                         console.log("success");
-                         this.$router.push({ path: '/newest'});
-                    } else {
-                        console.log(result.data);
+                        this.$router.push({ path: '/newest'});
+                    } 
+                }).catch((error) => {
+                    console.log(error.response)
+                    if (error.response.status === 409) {
+                        const id = error.response.data.detail.split(": ")[1];
+                        this.$router.push({ path: '/contribution', query: {id: id} });
+
+                    }
+                    else {
+                        console.log(error.response.data);
                     }
                 })
         }
@@ -123,13 +131,12 @@ export default {
                     }
                 })
         }
-        else if(isComment){
-                                   
+        else if(isAsk){
+           
             axios.post("https://asw-edu-jd-eric-arnau.herokuapp.com/api/contributions/" ,{
                     
                         title: this.title,
-                        url: this.url,
-                        description: this.description
+                        description: this.text 
                     }, {
                     headers: {
                         'Authorization' : 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
@@ -137,17 +144,9 @@ export default {
                 }).then((result) => {
                     if (result.status == 201) {
                         console.log("success");
-                        this.$router.push({ path: '/newest'});
-                    } 
-                }).catch((error) => {
-                    console.log(error.response)
-                    if (error.response.status === 409) {
-                        const id = error.response.data.detail.split(": ")[1];
-                        this.$router.push({ path: '/contribution', query: {id: id} });
-
-                    }
-                    else {
-                        console.log(error.response.data);
+                         this.$router.push({ path: '/newest'});
+                    } else {
+                        console.log(result.data);
                     }
                 })
         }

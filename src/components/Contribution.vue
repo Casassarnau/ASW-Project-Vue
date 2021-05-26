@@ -16,7 +16,7 @@
                             <router-link v-if="result.type == 'c' || result.type == 'r'" class="link" :to="{path: '/contribution', query: { id: result.id }}">reply</router-link>
                         </span>
                     </p>
-                    <h6 v-if="result.type == 'r' || result.type == 'c'" class="card-text">
+                    <h6 v-if="result.type == 'r' || result.type == 'c' || result.type == 'a'" class="card-text">
                         {{result.description}}
                     </h6>
                 </div>
@@ -105,6 +105,7 @@
                         result.data.comments = this.list_comments(comments, 0);
                         this.comments = result.data.comments;
                         this.result = result.data;
+                        console.log(result.data);
                     } else {
                         console.log(result.data);
                     }

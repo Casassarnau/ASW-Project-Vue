@@ -19,6 +19,11 @@ const router = createRouter({
             props: { path: '?types=au&order=-creation_time'}
         },
         {
+            path: '/submissions',
+            component: Home,
+            props: { path: '?types=au&order=-points'}
+        },
+        {
             path: '/new',
             component: Home,
             props: { path: '?types=u&order=-points'}

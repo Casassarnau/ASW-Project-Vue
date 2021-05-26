@@ -85,6 +85,7 @@ export default {
         reload() {
             let url = this.$props.path;
             if (this.$route.query.id) url += '&user_id=' + this.$route.query.id;
+            if (this.$route.query.upvoted) url += '&upvoted_by=' + 12;
             axios.get("https://asw-edu-jd-eric-arnau.herokuapp.com/api/contributions/" + url, {
                 headers: {
                     'Authorization': 'Token 0eaf2aac090866a76186b82094bca43d7233c9cd'
