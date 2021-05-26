@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import Guide from '../components/Guide.vue'
 import Profile from '../components/Profile.vue'
+import Contribution from '../components/Contribution.vue'
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -21,10 +23,25 @@ const router = createRouter({
             props: { path: '?types=u&order=-points'}
         },
         {
+            path: '/ask',
+            component: Home,
+            props: { path: '?types=a&order=-creation_time' }
+        },
+        {
+            path: '/threads',
+            component: Home,
+            props: { path: '?types=cr&order=-creation_time' }
+        },
+        {
             path: '/profile',
             component: Profile,
             props: route => ({ query: route.query.username })
+        },
+        {
+            path: '/contribution',
+            component: Contribution
         }
+
     ]
 })
 
