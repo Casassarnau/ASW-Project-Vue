@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/Home.vue'
+import Submit from '../components/Submit.vue'
 import Guide from '../components/Guide.vue'
 import Profile from '../components/Profile.vue'
 import Contribution from '../components/Contribution.vue'
@@ -33,12 +34,17 @@ const router = createRouter({
             props: { path: '?types=cr&order=-creation_time' }
         },
         {
+            path: '/submit',
+            component: Submit,
+        },
+        {
             path: '/profile',
             component: Profile            
         },
         {
             path: '/contribution',
-            component: Contribution
+            component: Contribution,
+            name: "contribution"
         }
 
     ]
